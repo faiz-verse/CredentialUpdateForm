@@ -26,8 +26,8 @@ app.post("/submit", async (req, res) => {
       "https://cloud.uipath.com/identity_/connect/token",
       new URLSearchParams({
         grant_type: "client_credentials",
-        client_id: "UBqGRf1iHykj@Ba?",
-        client_secret: "aa38df26-cc6c-4e12-b2f8-4eed9c7574f0",
+        client_id: "aa38df26-cc6c-4e12-b2f8-4eed9c7574f0",
+        client_secret: "vlF_BIfY0VCCBDzM",
         scope: "OR.Queues.Write OR.Folders.Read",
       }),
       {
