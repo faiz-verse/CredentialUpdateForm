@@ -44,7 +44,7 @@ app.post("/submit", async (req, res) => {
       "https://cloud.uipath.com/faizanorg/DefaultTenant/odata/Queues/UiPathODataSvc.AddQueueItem",
       {
         itemData: {
-          Name: "Employee ID: " + employeeId + " update request",
+          Name: "User Credentials Update Queue",
           Priority: "Normal",
           SpecificContent: {
             DateTime: new Date().toISOString(),
