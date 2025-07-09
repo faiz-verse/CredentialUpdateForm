@@ -72,3 +72,10 @@ button[type="reset"] {
 button[type="reset"]:hover {
     background-color: #5a6268;
 }
+
+#alertBox {
+    max-width: 500px;
+    margin: 20px auto;
+    position: fixed;
+    top: 20px;
+}
