@@ -82,8 +82,14 @@
             alertBox.style.padding = "10px";
             alertBox.style.borderRadius = "8px";
             alertBox.style.display = "block";
+            alertBox.style.opacity = "1";
+            alertBox.style.transform = "translateY(-20px)";
+            alertBox.style.scale = "1.05";
             setTimeout(() => {
                 alertBox.style.display = "none";
+                alertBox.style.opacity = "0";
+                alertBox.style.transform = "translateY(-10px)";
+                alertBox.style.scale = "1";
             }, 3000)
         }
     </script>

@@ -15,7 +15,7 @@ body {
 .container {
     background-color: #fff;
     max-width: 500px;
-    margin: 40px auto;
+    margin: 70px auto;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
@@ -81,4 +81,5 @@ button[type="reset"]:hover {
     margin: 20px auto;
     position: fixed;
     top: 20px;
+    transition: all 0.5s ease-in-out;
 }
