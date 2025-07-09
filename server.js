@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // FOR AES-265 Authentication
-const ENCRYPTION_KEY = Buffer.from("12345678901234567890123456789012"); // 32 chars
-const IV = Buffer.from("1234567890123456"); // 16 chars
+const ENCRYPTION_KEY = Buffer.from("ThisIsMySecretKeyForHPCL2025!!"); // 32 chars
+const IV = Buffer.from("hpcl.com@1234567"); // 16 chars
 
 // function to encrypt the values using the key and initial vector
 function encrypt(text, key, iv) {
@@ -27,8 +27,7 @@ function encrypt(text, key, iv) {
 
 // Form submission endpoint
 app.post("/submit", async (req, res) => {
-  const { employeeId, asset, username, currentPassword, newPassword } =
-    req.body;
+  const { employeeId, asset, username, newPassword } = req.body;
 
   console.log("📥 Form submitted. Sending to UiPath Queue...");
 
