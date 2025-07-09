@@ -16,7 +16,10 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // FOR AES-265 Authentication
-const ENCRYPTION_KEY = Buffer.from("ThisIsMySecretKeyForHPCL2025!!"); // 32 chars
+const ENCRYPTION_KEY = crypto
+  .createHash("sha256")
+  .update("HPCL_Encryption_2025_Secret")
+  .digest(); // 32 chars
 const IV = Buffer.from("hpcl.com@1234567"); // 16 chars
 
 // function to encrypt the values using the key and initial vector
