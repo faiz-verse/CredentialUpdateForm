@@ -78,24 +78,13 @@ app.post("/submit", async (req, res) => {
 
     console.log("✅ Queue Item Added:", queueResponse.data);
 
-    res.send(`
-      <h2>✅ Credentials submitted and added to UiPath Queue successfully!</h2>
-      <a href="/">Go back to form</a>
-    `);
+    res.send("✅ Queue Item Added:", queueResponse.data);
   } catch (error) {
     console.error(
       "❌ Error while submitting:",
       error.response?.data || error.message
     );
-    res.status(500).send(`
-      <h2>❌ Failed to submit credentials to UiPath Queue</h2>
-      <pre>${JSON.stringify(
-        error.response?.data || error.message,
-        null,
-        2
-      )}</pre>
-      <a href="/">Try Again</a>
-    `);
+    res.status(500).send(error.response?.data || error.message);
   }
 });
 

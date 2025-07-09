@@ -36,6 +36,54 @@
             </div>
         </form>
     </div>
+    <div id="alertBox" style="margin-top: 20px; display: none;"></div>
+
+
+    <!-- SCRIPT for validation -->
+    <script>
+        const form = document.getElementById("credentialForm");
+        const alertBox = document.getElementById("alertBox");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault(); // prevent default reload
+
+            const employeeId = form.employeeId.value.trim();
+            const asset = form.asset.value;
+            const username = form.username.value.trim();
+            const newPassword = form.newPassword.value.trim();
+
+            if (!employeeId || !asset || !username || !newPassword) {
+                showAlert("❌ All fields are required.", "red");
+                return;
+            }
+
+            try {
+                const response = await fetch("/submit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ employeeId, asset, username, newPassword }),
+                });
+
+                const result = await response.text(); // Server returns HTML (currently)
+                if (response.ok) {
+                    showAlert("✅ Credentials successfully added to the queue!", "palegreen");
+                    form.reset();
+                } else {
+                    showAlert("❌ Failed: " + result, "red");
+                }
+            } catch (err) {
+                showAlert("❌ Server error: " + err.message, "tomato");
+            }
+        });
+
+        function showAlert(message, color) {
+            alertBox.textContent = message;
+            alertBox.style.background = color;
+            alertBox.style.padding = "10px";
+            alertBox.style.borderRadius = "8px";
+            alertBox.style.display = "block";
+        }
+    </script>
 </body>
 
 </html>
