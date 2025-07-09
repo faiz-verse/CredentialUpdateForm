@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credential Update Form</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2>Credential Update Form</h2>
+        <form id="credentialForm" action="/submit" method="POST">
+            <label for="employeeId">Employee ID</label>
+            <input type="text" id="employeeId" name="employeeId" required />
+
+            <label for="asset">Select Asset</label>
+            <select id="asset" name="asset" required>
+                <option value="">-- Choose an Asset --</option>
+                <option value="CRM_Credentials">CRM_Credentials</option>
+                <option value="SAP_Prod_Login">SAP_Prod_Login</option>
+                <option value="API_Secret_Key">API_Secret_Key</option>
+                <option value="Database_Admin">Database_Admin</option>
+            </select>
+
+            <label for="username">Username (Email ID)</label>
+            <input type="email" id="username" name="username" required />
+
+            <label for="currentPassword">Current Password</label>
+            <input type="password" id="currentPassword" name="currentPassword" required />
+
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" name="newPassword" required />
+
+            <div class="button-group">
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
