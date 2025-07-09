@@ -10,8 +10,20 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Serve static frontend (if needed)
+// Serve static frontend
 app.use(express.static(path.join(__dirname, "public")));
+
+// FOR AES-265 Authentication
+const ENCRYPTION_KEY = Buffer.from("12345678901234567890123456789012"); // 32 chars
+const IV = Buffer.from("1234567890123456"); // 16 chars
+
+// function to encrypt the values using the key and initial vector
+function encrypt(text, key, iv) {
+  const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
+  let encrypted = cipher.update(text, "utf8", "base64");
+  encrypted += cipher.final("base64");
+  return encrypted;
+}
 
 // Form submission endpoint
 app.post("/submit", async (req, res) => {
@@ -46,11 +58,12 @@ app.post("/submit", async (req, res) => {
         itemData: {
           Name: "User Credentials Update Queue",
           Priority: "Normal",
+          Reference: `${employeeId} request to update ${asset}`,
           SpecificContent: {
             DateTime: new Date().toISOString(),
             AssetToUpdate: asset,
-            Username: username,
-            Password: newPassword,
+            Username: encrypt(username, ENCRYPTION_KEY, IV),
+            Password: encrypt(newPassword, ENCRYPTION_KEY, IV),
             EmployeeID: employeeId,
           },
         },
