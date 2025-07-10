@@ -81,9 +81,9 @@ app.post("/submit", async (req, res) => {
       }
     );
 
-    console.log("✅ Queue Item Added:", queueResponse.data);
+    console.log("✅ Queue Item Added Successfully!");
 
-    res.send("✅ Queue Item Added:", queueResponse.data);
+    res.send("✅ Queue Item Added Successfully!");
   } catch (error) {
     console.error(
       "❌ Error while submitting:",
